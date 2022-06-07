@@ -1,0 +1,23 @@
+<mat-toolbar color="accent" class="mat-elevation-z6">
+  <mat-icon aria-hidden="false" aria-label="{2:label} icon"> echo </mat-icon>
+  <span>BabaCheez</span>
+  <span [ngClass]="'filler'"></span>
+  <mat-form-field>
+    <input matInput [(ngModel)]="brand" />
+    <button mat-icon-button (click)="show()">
+      <mat-icon aria-label="label">search</mat-icon>
+    </button>
+  </mat-form-field>
+  <span [ngClass]="'filler'"></span>
+  <button mat-raised-button color="primary" routerLink="/signup">SignUp</button>
+  <button mat-raised-button color="warn" routerLink="/login">SignIn</button>
+</mat-toolbar>
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <span>
+    <mat-icon aria-hidden="false" aria-label="{2:label} icon">menu</mat-icon>
+  </span>
+  <button mat-button routerLink="/home">Home</button>
+  <div *ngFor="let category of categories">
+    <button mat-button routerLink="/category">{{ category }}</button>
+  </div>
+</mat-toolbar>
