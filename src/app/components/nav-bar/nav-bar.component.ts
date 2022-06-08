@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -11,15 +13,29 @@ export class NavBarComponent implements OnInit {
 
   categories!: string[];
 
+  productCategory!: Product[];
+
+  prodCat!: Product[];
+
   show = () => {
     console.log(this.brand);
   };
 
-  constructor(private _productService: ProductService) {}
+  constructor(
+    private _productService: ProductService,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {
     this._productService.getDistinctCategory().subscribe({
       next: (data) => (this.categories = data),
     });
   }
+
+  viewByCategory = (category: string) => {
+    this._productService.getByCategory(category).subscribe({
+      next: (data) => (this.productCategory = data),
+    });
+    this._router.navigate(['/products', category]);
+  };
 }
